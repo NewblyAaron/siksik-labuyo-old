@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1006735223733",
+    "project_id": "siksiklabuyo-d9974",
+    "storage_bucket": "siksiklabuyo-d9974.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006735223733:android:b49d39df3a643f5b85c7fc",
+        "android_client_info": {
+          "package_name": "com.example.siksik_labuyo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006735223733-o5gvceeahvnu81soqlbq68notr02jsm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9_YUDse0SHY3N5fizUQVU9PcbQUYsZuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006735223733-o5gvceeahvnu81soqlbq68notr02jsm4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1006735223733-45ne6rc9ufdjfhue4crteprq8bjhlf83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.siksikLabuyo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006735223733:android:94d63381dc846c5c85c7fc",
+        "android_client_info": {
+          "package_name": "newbly.siksik_labuyo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006735223733-o5gvceeahvnu81soqlbq68notr02jsm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9_YUDse0SHY3N5fizUQVU9PcbQUYsZuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006735223733-o5gvceeahvnu81soqlbq68notr02jsm4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1006735223733-45ne6rc9ufdjfhue4crteprq8bjhlf83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.siksikLabuyo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

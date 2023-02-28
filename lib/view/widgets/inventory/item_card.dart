@@ -2,6 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
 
+/* 
+Aaron M. Serrano
+Team: i dont know
+Project Name: Siksik Labuyo
+Feature: [LBYO-001] Inventory
+Feature description:
+  A custom widget made for showing an item, it shows quick information
+  of an item's name, price, and quantity, and a picture if it exists.
+ */
+
 class ItemCard extends StatelessWidget {
   const ItemCard({Key? key, required this.item}) : super(key: key);
 
@@ -23,7 +33,7 @@ class ItemCard extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl:
                     (item.imageUrl == null) ? NO_IMAGE_URL : item.imageUrl!,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 progressIndicatorBuilder: (context, url, downloadProgress) {
                   return Center(
                     child: CircularProgressIndicator(

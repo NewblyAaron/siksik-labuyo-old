@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:siksik_labuyo/model/category.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 
@@ -12,6 +13,8 @@ class AddItemForm extends StatefulWidget {
 class _AddItemFormState extends State<AddItemForm> {
   final _formKey = GlobalKey<FormState>();
   final nameTextFormFieldController = TextEditingController();
+  final priceTextFormFieldController = TextEditingController();
+  final quantityTextFormFieldController = TextEditingController();
 
   @override
   void dispose() {
@@ -100,7 +103,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                     },
                                   ),
                                 ),
-                                const SizedBox(width: 20),
+                                const SizedBox(width: 16),
                                 Expanded(
                                   child: DropdownButtonFormField(
                                     hint: const Text("Category"),
@@ -126,15 +129,71 @@ class _AddItemFormState extends State<AddItemForm> {
                                 ),
                               ],
                             ),
-                            
                             const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: quantityTextFormFieldController,
+                                    keyboardType: TextInputType.number,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: "Quantity",
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter the quantity!";
+                                      }
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: priceTextFormFieldController,
+                                    keyboardType: TextInputType.number,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: "Price",
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter the price!";
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed: () {
+                                    print("test pick");
+                                  }, 
+                                  icon: const Icon(Icons.image_search), 
+                                  label: const Text("Pick an image"),
+                                ),
+                                ElevatedButton.icon(
+                                  onPressed: () {
+                                    print("test delete");
+                                  }, 
+                                  icon: const Icon(Icons.delete), 
+                                  label: const Text("Delete image"),
+                                ),
+                              ],
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {}
+                                      if (_formKey.currentState!.validate()) {
+                                        final imagePicker = ImagePicker(); 
+                                      }
                                     },
                                     child: const Text('Submit'),
                                   ),

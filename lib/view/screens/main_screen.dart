@@ -33,10 +33,9 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          //ItemsPage()
           ItemPage(),
-          DashboardPage(),
           PointOfSalePage(),
+          DashboardPage(),
           InventoryPage(),
           ReportPage(),
         ],
@@ -53,10 +52,11 @@ class _MainScreenState extends State<MainScreen> {
       });
     }
 
+    // A bottom navigation bar
     List<BottomNavigationBarItem> bottomNavBarItems = const [
       BottomNavigationBarItem(
         icon: Icon(Icons.dashboard),
-        label: "Dashboard",
+        label: "Items",
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.shopping_cart),
@@ -64,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.home),
-        label: "Home",
+        label: "Dashboard",
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.inventory),

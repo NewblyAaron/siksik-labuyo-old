@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/category.dart';
 
@@ -25,7 +24,9 @@ class _AddCategoryFormState extends State<AddCategoryForm> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          color: (MediaQuery.of(context).platformBrightness == Brightness.dark) ? Colors.white : theme.colorScheme.onPrimary,
+          color: (MediaQuery.of(context).platformBrightness == Brightness.dark)
+              ? Colors.white
+              : theme.colorScheme.onPrimary,
         ),
         title: const Text("New category"),
       ),
@@ -55,29 +56,36 @@ class _AddCategoryFormState extends State<AddCategoryForm> {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Processing data...')));
-                          var db = FirebaseFirestore.instance;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Processing data...')));
 
-                          final newCategory = Category(name: nameTextFormFieldController.text);
-                          final docRef = db
-                          .collection('categories')
-                          .withConverter(
-                            fromFirestore: Category.fromFirestore, 
-                            toFirestore: (Category category, options) => category.toFirestore(),
-                          )
-                          .doc(newCategory.name.toLowerCase());
-                          newCategory.id = docRef.id;
-
-                          await docRef.set(newCategory).then((doc) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success! ${newCategory.name} is added.')));
-                            Navigator.pop(context);
-                          }).timeout(const Duration(seconds: 15)).catchError((error) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occured... $error')));
-                          });
+                          final newCategory = Category(
+                              id: nameTextFormFieldController.text
+                                  .toLowerCase(),
+                              name: nameTextFormFieldController.text);
+                          categoriesRef
+                              .doc(newCategory.id)
+                              .set(newCategory)
+                              .then((value) async {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        'Success! ${newCategory.name} is added.')));
+                                Navigator.pop(context);
+                              })
+                              .timeout(const Duration(seconds: 15))
+                              .catchError((error) {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'An error has occured... $error')));
+                              });
                         }
-                      }, 
+                      },
                       child: const Text('Submit'),
                     ),
                   ),

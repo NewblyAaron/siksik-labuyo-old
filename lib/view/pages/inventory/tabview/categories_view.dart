@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/category.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_category_form.dart';
@@ -17,13 +16,13 @@ class _CategoriesTabViewState extends State<CategoriesTabView> with AutomaticKee
     super.build(context);
     
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-          stream: Category.fetchCollectionFromFirestore().snapshots(),
+      body: StreamBuilder<CategoryQuerySnapshot>(
+          stream: categoriesRef.snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var snapshotData = snapshot.data!;
               final categories = snapshotData.docs
-                  .map((doc) => Category.fromJson(doc.data() as Map<String, dynamic>))
+                  .map((doc) => doc.data)
                   .toList();
               return SafeArea(
                 child: ListView(

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 
@@ -25,7 +24,9 @@ class _AddCreatorFormState extends State<AddCreatorForm> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          color: (MediaQuery.of(context).platformBrightness == Brightness.dark) ? Colors.white : theme.colorScheme.onPrimary,
+          color: (MediaQuery.of(context).platformBrightness == Brightness.dark)
+              ? Colors.white
+              : theme.colorScheme.onPrimary,
         ),
         title: const Text("New creator"),
       ),
@@ -55,29 +56,33 @@ class _AddCreatorFormState extends State<AddCreatorForm> {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Processing data...')));
-                          var db = FirebaseFirestore.instance;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Processing data...')));
 
-                          final newCreator = Creator(name: nameTextFormFieldController.text);
-                          final docRef = db
-                          .collection('creators')
-                          .withConverter(
-                            fromFirestore: Creator.fromFirestore, 
-                            toFirestore: (Creator creator, options) => creator.toFirestore(),
-                          )
-                          .doc();
-                          newCreator.id = docRef.id;
-
-                          await docRef.set(newCreator).then((doc) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success! ${newCreator.name} is added.')));
-                            Navigator.pop(context);
-                          }).timeout(const Duration(seconds: 15)).catchError((error) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occured... $error')));
-                          });
+                          final newCreator =
+                              Creator(name: nameTextFormFieldController.text);
+                          creatorsRef
+                              .add(newCreator)
+                              .then((value) async {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        'Success! ${newCreator.name} is added.')));
+                                Navigator.pop(context);
+                              })
+                              .timeout(const Duration(seconds: 15))
+                              .catchError((error) {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'An error has occured... $error')));
+                              });
                         }
-                      }, 
+                      },
                       child: const Text('Submit'),
                     ),
                   ),

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_creator_form.dart';
@@ -17,13 +16,13 @@ class _CreatorsTabViewState extends State<CreatorsTabView> with AutomaticKeepAli
     super.build(context);
     
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-          stream: Creator.fetchCollectionFromFirestore().snapshots(),
+      body: StreamBuilder<CreatorQuerySnapshot>(
+          stream: creatorsRef.snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var snapshotData = snapshot.data!;
               final creators = snapshotData.docs
-                  .map((doc) => Creator.fromJson(doc.data() as Map<String, dynamic>))
+                  .map((doc) => doc.data)
                   .toList();
               return SafeArea(
                 child: ListView(

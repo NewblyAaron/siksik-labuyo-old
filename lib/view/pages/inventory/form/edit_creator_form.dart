@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 
@@ -23,7 +22,6 @@ class _EditCreatorPageState extends State<EditCreatorForm> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
 
     nameTextFormFieldController.text = widget.creator.name;
 
@@ -31,7 +29,7 @@ class _EditCreatorPageState extends State<EditCreatorForm> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.delete,
             ),
             onPressed: () => showDialog(
@@ -44,18 +42,16 @@ class _EditCreatorPageState extends State<EditCreatorForm> {
                   TextButton(
                     child: const Text("Yes"),
                     onPressed: () async {
-                      final db = FirebaseFirestore.instance;
-                      final docRef =
-                          db.collection('creators').doc(widget.creator.id);
-
-                      await docRef
+                      await creatorsRef
+                          .doc(widget.creator.id)
                           .delete()
                           .then((doc) {
                             ScaffoldMessenger.of(context).hideCurrentSnackBar();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                                     '${widget.creator.name} has been deleted!')));
-                            Navigator.of(context).popUntil((route) => route.isFirst);
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
                           })
                           .timeout(const Duration(seconds: 15))
                           .catchError((error) {
@@ -111,17 +107,12 @@ class _EditCreatorPageState extends State<EditCreatorForm> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Processing data...')));
-                            var db = FirebaseFirestore.instance;
-
                             final updatedCreator = Creator(
                                 name: nameTextFormFieldController.text,
                                 id: widget.creator.id);
-                            final docRef = db
-                                .collection('creators')
-                                .doc(updatedCreator.id);
-
-                            await docRef
-                                .update(updatedCreator.toFirestore())
+                            await creatorsRef
+                                .doc(widget.creator.id)
+                                .update(name: updatedCreator.name)
                                 .then((doc) {
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();

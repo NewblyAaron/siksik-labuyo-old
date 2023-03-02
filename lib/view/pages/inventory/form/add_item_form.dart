@@ -22,6 +22,7 @@ class _AddItemFormState extends State<AddItemForm> {
     super.dispose();
   }
 
+  // TODO: Refactor add_item_form.dart
   @override
   Widget build(BuildContext context) {
     String? selectedCreator;
@@ -39,22 +40,20 @@ class _AddItemFormState extends State<AddItemForm> {
           title: const Text("New item"),
         ),
         body: StreamBuilder(
-          stream: Creator.fetchCollectionFromFirestore().snapshots(),
+          stream: creatorsRef.snapshots(),
           builder: (context, creatorSnapshot) {
             return StreamBuilder(
-                stream: Category.fetchCollectionFromFirestore().snapshots(),
+                stream: categoriesRef.snapshots(),
                 builder: (context, categorySnapshot) {
                   if (creatorSnapshot.hasData && categorySnapshot.hasData) {
                     var creatorSnapshotData = creatorSnapshot.data!;
                     var categorySnapshotData = categorySnapshot.data!;
 
                     final creatorList = creatorSnapshotData.docs
-                        .map((doc) => Creator.fromJson(
-                            doc.data() as Map<String, dynamic>))
+                        .map((doc) => doc.data)
                         .toList();
                     final categoryList = categorySnapshotData.docs
-                        .map((doc) => Category.fromJson(
-                            doc.data() as Map<String, dynamic>))
+                        .map((doc) => doc.data)
                         .toList();
 
                     return Form(
@@ -172,15 +171,15 @@ class _AddItemFormState extends State<AddItemForm> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     print("test pick");
-                                  }, 
-                                  icon: const Icon(Icons.image_search), 
+                                  },
+                                  icon: const Icon(Icons.image_search),
                                   label: const Text("Pick an image"),
                                 ),
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     print("test delete");
-                                  }, 
-                                  icon: const Icon(Icons.delete), 
+                                  },
+                                  icon: const Icon(Icons.delete),
                                   label: const Text("Delete image"),
                                 ),
                               ],
@@ -192,7 +191,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
-                                        final imagePicker = ImagePicker(); 
+                                        final imagePicker = ImagePicker();
                                       }
                                     },
                                     child: const Text('Submit'),

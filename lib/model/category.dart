@@ -1,41 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'category.g.dart';
+
+const firestoreSerializable = JsonSerializable(
+  converters: firestoreJsonConverters,
+  explicitToJson: true,
+  createFieldMap: true,
+);
+
+@firestoreSerializable
 class Category {
-  String? id;
+  Category({this.id, required this.name});
+
+  @Id()
+  final String? id;
+
   final String name;
 
-  Category({required this.name, this.id});
+  factory Category.fromJson(Map<String, Object?> json) => _$CategoryFromJson(json);
 
-  factory Category.fromFirestore(
-    DocumentSnapshot<Map<String, dynamic>> snapshot,
-    SnapshotOptions? options
-  ) {
-    final data = snapshot.data();
-
-    return Category(
-      id: data?['id'],
-      name: data?['name'],
-    );
-  }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      if (id != null) "id": id,
-      "name": name,
-    };
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      "id": id,
-      "name": name,
-    };
-  }
-
-  static Category fromJson(Map<String, dynamic> json) => Category(
-        id: json['id'],
-        name: json['name'],
-      );
-
-  static CollectionReference fetchCollectionFromFirestore() => FirebaseFirestore.instance.collection('categories');
+  Map<String, Object?> toJson() => _$CategoryToJson(this);
 }
+
+@Collection<Category>('categories')
+final categoriesRef = CategoryCollectionReference();

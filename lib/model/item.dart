@@ -1,46 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:siksik_labuyo/model/category.dart';
+import 'package:siksik_labuyo/model/creator.dart';
 
+part 'item.g.dart';
+
+const firestoreSerializable = JsonSerializable(
+  converters: firestoreJsonConverters,
+  explicitToJson: true,
+  createFieldMap: true,
+);
+
+@firestoreSerializable
 class Item {
-  String? id;
+  Item(
+    {
+      this.id,
+      required this.name,
+      required this.categoryId,
+      required this.creatorId,
+      required this.price,
+      required this.stock,
+      this.imageUrl
+    }
+    );
+
+  @Id()
+  final String? id;
+
   final String name;
   final String categoryId;
   final String creatorId;
-  final String? imageUrl;
+  final double price;
   final int stock;
-  final num price;
+  final String? imageUrl;
 
-  Item(
-      {required this.name,
-      required this.categoryId,
-      required this.creatorId,
-      required this.stock,
-      required this.price,
-      this.imageUrl,
-      this.id});
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      "id": id,
-      "name": name,
-      "categoryId": categoryId,
-      "creatorId": creatorId,
-      "stock": stock,
-      "price": price
-    };
+  Future<Category> getCategory() async {
+    return await categoriesRef.doc(categoryId).get().then((value) => value.data!);
   }
 
-  static Item fromJson(Map<String, dynamic> json) { 
-    return Item(
-        id: json['id'],
-        name: json['name'],
-        imageUrl: json['imageUrl'],
-        categoryId: json['categoryId'],
-        creatorId: json['creatorId'],
-        stock: json['stock'],
-        price: json['price'],
-      );
+  Future<Creator> getCreator() async {
+    return await creatorsRef.doc(creatorId).get().then((value) => value.data!);
   }
-
-  static CollectionReference fetchCollectionFromFirestore() =>
-      FirebaseFirestore.instance.collection('items');
 }
+
+@Collection<Item>('items')
+final itemsRef = ItemCollectionReference();

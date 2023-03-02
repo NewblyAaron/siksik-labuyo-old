@@ -25,8 +25,8 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Card(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Stack(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             AspectRatio(
               aspectRatio: 1,
@@ -44,13 +44,12 @@ class ItemCard extends StatelessWidget {
                     const Center(child: Icon(Icons.error)),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ColoredBox(
-                  color: Colors.black.withAlpha(128),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -78,17 +77,12 @@ class ItemCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
       ),
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                "[${item.id}] ${item.name}\n${item.categoryId}\n${item.creatorId}")));
-      },
     );
   }
 }

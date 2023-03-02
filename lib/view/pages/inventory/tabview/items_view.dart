@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_item_form.dart';
-import 'package:siksik_labuyo/view/widgets/inventory/item_card.dart';
+import 'package:siksik_labuyo/view/widgets/inventory/new_item_card.dart';
 
 class ItemsTabView extends StatefulWidget {
   const ItemsTabView({super.key});
@@ -17,19 +17,20 @@ class _ItemTabViewState extends State<ItemsTabView> with AutomaticKeepAliveClien
     super.build(context);
     
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-          stream: Item.fetchCollectionFromFirestore().snapshots(),
+      body: StreamBuilder<QuerySnapshot<Item>>(
+          stream: itemsRef.reference.snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var snapshotData = snapshot.data!;
               final items = snapshotData.docs
-                  .map((doc) => Item.fromJson(doc.data() as Map<String, dynamic>))
+                  .map((doc) => doc.data())
                   .toList();
               return SafeArea(
                 child: GridView.count(
                   crossAxisCount: 2,
+                  childAspectRatio: 0.7,
                   padding: const EdgeInsets.all(8),
-                  children: items.map((item) => ItemCard(item: item)).toList(),
+                  children: items.map((item) => NewItemCard(item: item)).toList(),
                 ),
               );
             } else {

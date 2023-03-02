@@ -68,6 +68,11 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
+
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+          ),
         ),
         themeMode: ThemeMode.system,
         home: const MainScreen(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/view/pages/dashboard_page.dart';
 import 'package:siksik_labuyo/view/pages/inventory/inventory_page.dart';
+import 'package:siksik_labuyo/view/pages/items_page.dart';
 import 'package:siksik_labuyo/view/pages/point_of_sale_page.dart';
 import 'package:siksik_labuyo/view/pages/report_page.dart';
 
@@ -32,6 +33,8 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
+          //ItemsPage()
+          ItemPage(),
           DashboardPage(),
           PointOfSalePage(),
           InventoryPage(),
@@ -60,6 +63,10 @@ class _MainScreenState extends State<MainScreen> {
         label: "Point-of-Sale",
       ),
       BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
         icon: Icon(Icons.inventory),
         label: "Inventory",
       ),
@@ -74,6 +81,8 @@ class _MainScreenState extends State<MainScreen> {
         title: const Text("Siksik Labuyo"),
       ),
       body: buildPageView(),
+
+      // Bottom NAVBAR
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: bottomNavBarItems,

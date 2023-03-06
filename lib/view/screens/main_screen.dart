@@ -13,12 +13,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int bottomNavbarSelectedIndex = 0;
+  int bottomNavbarSelectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
     PageController pageController = PageController(
-      initialPage: 0,
+      initialPage: 2,
       keepPage: true,
     );
 

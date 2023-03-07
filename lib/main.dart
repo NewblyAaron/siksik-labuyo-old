@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var colorScheme = ColorScheme.fromSeed(seedColor: Colors.redAccent);
+    var colorScheme = ColorScheme.fromSeed(seedColor: Colors.greenAccent);
 
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),

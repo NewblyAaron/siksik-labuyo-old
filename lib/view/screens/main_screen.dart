@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.shopping_cart),
-        label: "Point-of-Sale",
+        label: "Shopping Cart",
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.home),
@@ -81,7 +81,6 @@ class _MainScreenState extends State<MainScreen> {
         title: const Text("Siksik Labuyo"),
       ),
       body: buildPageView(),
-
       // Bottom NAVBAR
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

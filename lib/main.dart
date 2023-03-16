@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:siksik_labuyo/view/screens/main_screen.dart';
 import 'firebase/firebase_options.dart';
+import 'splash.dart';
 
 Future<void> main() async {
   // Start connection to Firebase
@@ -30,7 +31,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.light,
           colorScheme: colorScheme,
-
           appBarTheme: AppBarTheme(
             backgroundColor: colorScheme.primary,
             titleTextStyle: TextStyle(
@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
           ),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: colorScheme.primary,
-            
             unselectedItemColor: colorScheme.onPrimary,
             selectedItemColor: colorScheme.inversePrimary,
             showSelectedLabels: true,
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
           ),
           tabBarTheme: TabBarTheme(
             labelColor: colorScheme.inversePrimary,
-            unselectedLabelColor: colorScheme.onPrimary, 
+            unselectedLabelColor: colorScheme.onPrimary,
           ),
           snackBarTheme: SnackBarThemeData(
             actionTextColor: colorScheme.primary,
@@ -68,14 +67,13 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             showSelectedLabels: true,
             showUnselectedLabels: false,
           ),
         ),
         themeMode: ThemeMode.system,
-        home: const MainScreen(),
+        home: Splash(),
       ),
     );
   }

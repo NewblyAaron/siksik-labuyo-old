@@ -3,7 +3,7 @@ import 'package:siksik_labuyo/view/pages/dashboard_page.dart';
 import 'package:siksik_labuyo/view/pages/inventory/inventory_page.dart';
 import 'package:siksik_labuyo/view/pages/items_page.dart';
 import 'package:siksik_labuyo/view/pages/point_of_sale_page.dart';
-import 'package:siksik_labuyo/view/pages/report_page.dart';
+import 'package:siksik_labuyo/view/pages/reports/report_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -48,7 +48,8 @@ class _MainScreenState extends State<MainScreen> {
     void bottomNavbarTapped(int index) {
       setState(() {
         bottomNavbarSelectedIndex = index;
-        pageController.animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.ease);
+        pageController.animateToPage(index,
+            duration: const Duration(milliseconds: 200), curve: Curves.ease);
       });
     }
 

@@ -1,3 +1,10 @@
+/* Paul Vincent E. Llesol
+Team: 
+Project Name: Siksik Labuyo
+Feature: [LBYO-1001] Splash Screen
+Feature description: Splash Screen which displays the logo of Siksik Labuyo before proceeding to the main screen.
+*/
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +25,7 @@ class _SplashState extends State<Splash> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(const Duration(hours: 1500), () {});
+    await Future.delayed(const Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => MainScreen()));
   }
@@ -26,16 +33,28 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            color: Colors.redAccent,
-            width: double.infinity,
-            height: 100,
-            child: Text('Siksik Labuyo',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.anton(
-                  color: Colors.white,
-                  fontSize: 30,
-                  letterSpacing: 2.0,
-                ))));
+        body: Center(
+            child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.red.shade700,
+                      Colors.redAccent,
+                      Colors.redAccent,
+                      Colors.red.shade700,
+                    ],
+                  ),
+                ),
+                width: double.infinity,
+                height: 125,
+                alignment: Alignment.center,
+                child: Text('Siksik Labuyo',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.anton(
+                      color: Colors.white,
+                      fontSize: 30,
+                    )))));
   }
 }

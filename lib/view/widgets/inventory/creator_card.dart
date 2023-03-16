@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/edit_creator_form.dart';
 
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 401.1] Creators Card Widget
+  Feature Description:
+    The creators card widget for use in the creators tabview.
+ */
+
 class CreatorCard extends StatelessWidget {
   const CreatorCard({Key? key, required this.creator}) : super(key: key);
 

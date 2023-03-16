@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/category.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/edit_category_form.dart';
 
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 402.1] Categories Card Widget
+  Feature Description:
+    The categories card widget for use in the categories tabview.
+ */
+
 class CategoryCard extends StatelessWidget {
   const CategoryCard({Key? key, required this.category}) : super(key: key);
 

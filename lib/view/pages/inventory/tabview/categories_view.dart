@@ -3,6 +3,15 @@ import 'package:siksik_labuyo/model/category.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_category_form.dart';
 import 'package:siksik_labuyo/view/widgets/inventory/category_card.dart';
 
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 402] Categories TabView
+  Feature Description:
+    The tabview UI for the categories section of the inventory page.
+ */
+
 class CategoriesTabView extends StatefulWidget {
   const CategoriesTabView({super.key});
 

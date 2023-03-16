@@ -12,6 +12,15 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+/*
+  Bianca De Los Angeles, Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 001] Bottom Navigation Bar
+  Feature Description:
+    The UI for the app's bottom navbar. For navigation purposes to other pages.
+ */
+
 class _MainScreenState extends State<MainScreen> {
   int bottomNavbarSelectedIndex = 2;
 

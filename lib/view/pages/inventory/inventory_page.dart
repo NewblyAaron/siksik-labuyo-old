@@ -3,6 +3,15 @@ import 'package:siksik_labuyo/view/pages/inventory/tabview/categories_view.dart'
 import 'package:siksik_labuyo/view/pages/inventory/tabview/creators_view.dart';
 import 'package:siksik_labuyo/view/pages/inventory/tabview/items_view.dart';
 
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 400] Inventory Page
+  Feature Description:
+    The page UI for the inventory section of the app. Has tabs to manage different types of data, such as items, categories, and creators.
+ */
+
 class InventoryPage extends StatefulWidget {
   const InventoryPage({super.key});
 

@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
 
-/* 
-Aaron M. Serrano
-Team: i dont know
-Project Name: Siksik Labuyo
-Feature: [LBYO-001] Inventory
-Feature description:
-  A custom widget made for showing an item, it shows quick information
-  of an item's name, price, and quantity, and a picture if it exists.
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 403.1] Items Card Widget
+  Feature Description:
+    The items card widget for use in the items tabview.
  */
 
 class NewItemCard extends StatelessWidget {

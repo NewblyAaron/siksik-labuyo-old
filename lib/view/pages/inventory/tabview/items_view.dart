@@ -4,6 +4,15 @@ import 'package:siksik_labuyo/model/item.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_item_form.dart';
 import 'package:siksik_labuyo/view/widgets/inventory/new_item_card.dart';
 
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 403] Items TabView
+  Feature Description:
+    The tabview UI for the items section of the inventory page.
+ */
+
 class ItemsTabView extends StatefulWidget {
   const ItemsTabView({super.key});
 

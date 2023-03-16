@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 
 class GeneralReport extends StatefulWidget {

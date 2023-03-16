@@ -10,7 +10,7 @@ class PointOfSalePage extends StatefulWidget {
 /* Bianca De Los Angeles
   Team: IDK
   Project: Siksik Labuyo
-  Feature: [002] Point of Sale / Cart
+  Feature: [LBYO - 200] Cart UI
   Feature Description:
     The skeletal UI of the shopping cart page view.
  */

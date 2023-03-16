@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var colorScheme = ColorScheme.fromSeed(seedColor: Colors.greenAccent);
+    var colorScheme = ColorScheme.fromSeed(seedColor: Colors.redAccent);
 
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.light,
           colorScheme: colorScheme,
-
           appBarTheme: AppBarTheme(
             backgroundColor: colorScheme.primary,
             titleTextStyle: TextStyle(
@@ -46,7 +45,6 @@ class MyApp extends StatelessWidget {
           ),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: colorScheme.primary,
-            
             unselectedItemColor: colorScheme.onPrimary,
             selectedItemColor: colorScheme.inversePrimary,
             showSelectedLabels: true,
@@ -54,7 +52,7 @@ class MyApp extends StatelessWidget {
           ),
           tabBarTheme: TabBarTheme(
             labelColor: colorScheme.inversePrimary,
-            unselectedLabelColor: colorScheme.onPrimary, 
+            unselectedLabelColor: colorScheme.onPrimary,
           ),
           snackBarTheme: SnackBarThemeData(
             actionTextColor: colorScheme.primary,
@@ -68,7 +66,6 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             showSelectedLabels: true,
             showUnselectedLabels: false,

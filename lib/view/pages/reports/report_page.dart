@@ -3,8 +3,8 @@ import 'package:siksik_labuyo/view/pages/reports/report_tabs/general_report.dart
 import 'package:siksik_labuyo/view/pages/reports/report_tabs/creators_report.dart';
 
 /* Alejandro Miguel A. Monge
-Team: IDK
-Project Name:Siksik Labuyo
+Team: Siksik Labuyo
+Project Name: Siksik Labuyo
 Feature: [LBYO - 400] <RPT> Report
 Feature description: 
   This should be the page to display such as sales report which can be for 

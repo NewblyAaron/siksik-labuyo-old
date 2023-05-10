@@ -8,7 +8,7 @@ class GeneralReport extends StatefulWidget {
 }
 
 class _GeneralReport extends State<GeneralReport> {
-  @override
+  /*@override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
@@ -17,48 +17,44 @@ class _GeneralReport extends State<GeneralReport> {
         ),
       ),
     );
-  }
+  }*/
 
-  /*@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(children: <Widget>[
-        Center(
+        const Center(
             child: Text(
           'General Report',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
         DataTable(
-          columns: [
+          columns: const [
             DataColumn(
-                label: Text('Name',
+                label: Text('',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
             DataColumn(
-                label: Text('Profit',
+                label: Text('',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
           ],
-          rows: [
+          rows: const [
             DataRow(cells: [
+              DataCell(Text('Total Profit')),
+              DataCell(Text('10 000 Php')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('Most Selling Product')),
+              DataCell(Text('Smug Anya')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('Top Selling Creator')),
               DataCell(Text('Stephen')),
-              DataCell(Text('Morbillion Dollas')),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('John')),
-              DataCell(Text('nothing')),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('Harry')),
-              DataCell(Text('410 USD')),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('Peter')),
-              DataCell(Text('69 USD')),
-            ]),
+            ])
           ],
         ),
       ]),
     );
-  }*/
+  }
 }

@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
 
-/* 
-Aaron M. Serrano
-Team: i dont know
-Project Name: Siksik Labuyo
-Feature: [LBYO-001] Inventory
-Feature description:
-  A custom widget made for showing an item, it shows quick information
-  of an item's name, price, and quantity, and a picture if it exists.
+/*
+  Aaron Serrano
+  Team: IDK
+  Project: Siksik Labuyo
+  Feature: [LBYO - 403.1] Items Card Widget
+  Feature Description:
+    The items card widget for use in the items tabview.
  */
 
 class ItemCard extends StatelessWidget {
@@ -28,61 +27,99 @@ class ItemCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: CachedNetworkImage(
-                imageUrl:
-                    (item.imageUrl == null) ? NO_IMAGE_URL : item.imageUrl!,
-                fit: BoxFit.cover,
-                progressIndicatorBuilder: (context, url, downloadProgress) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress),
-                  );
-                },
-                errorWidget: (context, url, error) =>
-                    const Center(child: Icon(Icons.error)),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              item.name,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                            const Padding(
-                                padding: EdgeInsets.fromLTRB(2, 0, 2, 0)),
-                            Text('x${item.stock.toString()}',
-                                style: const TextStyle(color: Colors.amber)),
-                          ],
-                        ),
-                        Text('₱${item.price.toString()}',
-                            style: const TextStyle(
-                                color: Colors.greenAccent, fontSize: 18)),
-                      ],
+                  Flexible(
+                    child: Text(
+                      item.name,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      softWrap: false,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                  Text('₱${item.price.toString()}')
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8, top: 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        (item.imageUrl == null) ? NO_IMAGE_URL : item.imageUrl!,
+                    fit: BoxFit.cover,
+                    progressIndicatorBuilder: (context, url, downloadProgress) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                      );
+                    },
+                    errorWidget: (context, url, error) =>
+                        const Center(child: Icon(Icons.error)),
+                  ),
+                ),
+              ),
+            ),
+            FutureBuilder(
+              future: item.getCategory(),
+              builder: (context, catSnapshot) {
+                return FutureBuilder(
+                  future: item.getCreator(),
+                  builder: (context, creSnapshot) {
+                    if (catSnapshot.hasData && creSnapshot.hasData) {
+                      final category = catSnapshot.data!;
+                      final creator = creSnapshot.data!;
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(category.name),
+                          Text(creator.name)
+                        ],
+                      );
+                    } else {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: LinearProgressIndicator(),
+                        ),
+                      );
+                    }
+                  },
+                );
+            }),
+            Padding(
+              padding: const EdgeInsets.only(right: 8, top: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("x${item.stock}")
                 ],
               ),
             ),
           ],
         ),
       ),
+      onTap: () async {
+        final category = await item.getCategory();
+        final creator = await item.getCreator();
+
+        // ignore: use_build_context_synchronously
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                "[${item.id}] ${item.name}\n${category.name} | ${creator.name}")));
+      },
     );
   }
 }

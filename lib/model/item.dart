@@ -36,6 +36,10 @@ class Item {
   final int stock;
   final String? imageUrl;
 
+  factory Item.fromJson(Map<String, Object?> json) => _$ItemFromJson(json);
+
+  Map<String, Object?> toJson() => _$ItemToJson(this);
+
   Future<Category> getCategory() async {
     return await categoriesRef.doc(categoryId).get().then((value) => value.data!);
   }

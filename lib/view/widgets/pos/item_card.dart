@@ -11,8 +11,8 @@ import 'package:siksik_labuyo/model/item.dart';
     The items card widget for use in the items tabview.
  */
 
-class NewItemCard extends StatelessWidget {
-  const NewItemCard({Key? key, required this.item}) : super(key: key);
+class ItemCard extends StatelessWidget {
+  const ItemCard({Key? key, required this.item}) : super(key: key);
 
   final Item item;
 
@@ -110,15 +110,9 @@ class NewItemCard extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () async {
-        final category = await item.getCategory();
-        final creator = await item.getCreator();
-
-        if (!context.mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                "[${item.id}] ${item.name}\n${category.name} | ${creator.name}")));
-      },
+      onTap: () {
+        
+      }
     );
   }
 }

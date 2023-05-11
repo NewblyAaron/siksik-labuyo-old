@@ -99,6 +99,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                       if (value == null || value.isEmpty) {
                                         return "Please select a creator!";
                                       }
+                                      return null;
                                     },
                                   ),
                                 ),
@@ -123,6 +124,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                       if (value == null || value.isEmpty) {
                                         return "Please select a category!";
                                       }
+                                      return null;
                                     },
                                   ),
                                 ),
@@ -143,6 +145,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                       if (value == null || value.isEmpty) {
                                         return "Please enter the quantity!";
                                       }
+                                      return null;
                                     },
                                   ),
                                 ),
@@ -159,6 +162,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                       if (value == null || value.isEmpty) {
                                         return "Please enter the price!";
                                       }
+                                      return null;
                                     },
                                   ),
                                 ),

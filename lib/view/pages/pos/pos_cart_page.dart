@@ -19,7 +19,6 @@ class CartItem {
 
 // List of items in cart
 List<CartItem> cartItems = [
-  CartItem(itemDocRef: itemsRef.doc("hitler"), quantity: 3),
   CartItem(itemDocRef: itemsRef.doc("anya"), quantity: 2)
   // CartItem(
   //   image: 'https://images.pexels.com/photos/8329269/pexels-photo-8329269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:siksik_labuyo/model/category.dart';
 import 'package:siksik_labuyo/model/creator.dart';
 
@@ -195,7 +194,7 @@ class _AddItemFormState extends State<AddItemForm> {
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
-                                        final imagePicker = ImagePicker();
+                                        
                                       }
                                     },
                                     child: const Text('Submit'),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:siksik_labuyo/view/pages/pos/pos_cart_page.dart';
 import 'firebase/firebase_options.dart';
 import 'splash.dart';
 
@@ -10,6 +11,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  Provider.debugCheckInvalidValueType = null;
 
   runApp(const MyApp());
 }
@@ -22,8 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var colorScheme = ColorScheme.fromSeed(seedColor: Colors.redAccent);
 
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return Provider(
+      create: (context) => Cart(),
       child: MaterialApp(
         title: 'Siksik Labuyo',
         theme: ThemeData(
@@ -77,5 +80,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class MyAppState extends ChangeNotifier {}

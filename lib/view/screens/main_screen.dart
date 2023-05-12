@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/view/pages/dashboard/dashboard_page.dart';
 import 'package:siksik_labuyo/view/pages/inventory/inventory_page.dart';
 import 'package:siksik_labuyo/view/pages/pos/pos_items_page.dart';
-import 'package:siksik_labuyo/view/pages/pos/pos_cart_page.dart';
 import 'package:siksik_labuyo/view/pages/reports/report_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -22,12 +21,11 @@ class MainScreen extends StatefulWidget {
  */
 
 class _MainScreenState extends State<MainScreen> {
-  int bottomNavbarSelectedIndex = 2;
+  int bottomNavbarSelectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     PageController pageController = PageController(
-      initialPage: 2,
       keepPage: true,
     );
 
@@ -42,8 +40,8 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          PointOfSalePage(),
           DashboardPage(),
+          PointOfSalePage(),
           InventoryPage(),
           ReportPage(),
         ],
@@ -64,12 +62,12 @@ class _MainScreenState extends State<MainScreen> {
     // A bottom navigation bar
     List<BottomNavigationBarItem> bottomNavBarItems = const [
       BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_cart),
-        label: "Items",
-      ),
-      BottomNavigationBarItem(
         icon: Icon(Icons.home),
         label: "Dashboard",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.shopping_cart),
+        label: "Items",
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.inventory),
@@ -82,9 +80,6 @@ class _MainScreenState extends State<MainScreen> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Siksik Labuyo"),
-      ),
       body: buildPageView(),
       // Bottom NAVBAR
       bottomNavigationBar: BottomNavigationBar(

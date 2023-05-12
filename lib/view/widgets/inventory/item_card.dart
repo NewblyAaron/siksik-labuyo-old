@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:siksik_labuyo/model/item.dart';
 import 'package:siksik_labuyo/view/pages/pos/pos_cart_page.dart';
 
@@ -38,7 +39,8 @@ class _ItemCardState extends State<ItemCard> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(      child: Card(
+    return GestureDetector(
+      child: Card(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -122,14 +124,13 @@ class _ItemCardState extends State<ItemCard> {
           ],
         ),
       ),
-      onTap: () async {
-          var result = await showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text("Please enter the quantity"),
-              content: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Please enter the quantity"),
+            content:
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               TextButton(
                   onPressed: () {
                     setState(() {
@@ -169,19 +170,20 @@ class _ItemCardState extends State<ItemCard> {
             actions: [
               TextButton(
                   onPressed: () {
-                    CartItem ci = CartItem(item: widget.item, quantity: quantity);
+                    var cart = Provider.of<Cart>(context, listen: false);
+                    CartItem ci =
+                        CartItem(item: widget.item, quantity: quantity);
+                    cart.addItem(ci); 
+
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content:
+                            Text("Added ${ci.quantity} ${ci.item.name}!")));
                     Navigator.pop(context, ci);
                   },
                   child: const Text("Add to Cart")),
             ],
           ),
         );
-
-        if (result != null) {
-          setState(() {
-            
-          });
-        }
       },
     );
   }

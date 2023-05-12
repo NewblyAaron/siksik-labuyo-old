@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
 import 'package:siksik_labuyo/view/pages/inventory/form/add_item_form.dart';

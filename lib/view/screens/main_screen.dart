@@ -42,7 +42,6 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          ItemPage(),
           PointOfSalePage(),
           DashboardPage(),
           InventoryPage(),
@@ -65,12 +64,8 @@ class _MainScreenState extends State<MainScreen> {
     // A bottom navigation bar
     List<BottomNavigationBarItem> bottomNavBarItems = const [
       BottomNavigationBarItem(
-        icon: Icon(Icons.dashboard),
-        label: "Items",
-      ),
-      BottomNavigationBarItem(
         icon: Icon(Icons.shopping_cart),
-        label: "Shopping Cart",
+        label: "Items",
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.home),

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:siksik_labuyo/model/item.dart';
+import 'package:siksik_labuyo/view/pages/pos/pos_cart_page.dart';
 import 'package:siksik_labuyo/view/widgets/inventory/item_card.dart';
 
-class ItemPage extends StatefulWidget {
-  const ItemPage({super.key});
+class PointOfSalePage extends StatefulWidget {
+  const PointOfSalePage({super.key});
 
   @override
-  State<ItemPage> createState() => _ItemPageState();
+  State<PointOfSalePage> createState() => _PointOfSalePageState();
 }
 
-class _ItemPageState extends State<ItemPage> {
+class _PointOfSalePageState extends State<PointOfSalePage> {
+  List<CartItem> cart = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-          stream: itemsRef.reference.snapshots(),
+      body: FutureBuilder(
+          future: itemsRef.reference.get(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var snapshotData = snapshot.data!;
@@ -22,11 +25,13 @@ class _ItemPageState extends State<ItemPage> {
                   .map((doc) => doc.data())
                   .toList();
               return SafeArea(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.7),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return ItemCard(item: items[index]);
+                  },
                   padding: const EdgeInsets.all(8),
-                  children: items.map((item) => ItemCard(item: item)).toList(),
                 ),
               );
             } else {
@@ -37,6 +42,7 @@ class _ItemPageState extends State<ItemPage> {
               );
             }
           }),
+          
     );
   }
 }

@@ -26,8 +26,8 @@ class _ItemTabViewState extends State<ItemsTabView> with AutomaticKeepAliveClien
     super.build(context);
     
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot<Item>>(
-          stream: itemsRef.reference.snapshots(),
+      body: FutureBuilder(
+          future: itemsRef.reference.get(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var snapshotData = snapshot.data!;
